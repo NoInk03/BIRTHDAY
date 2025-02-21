@@ -3,22 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eerie Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Click Here</title>
+    <link rel="stylesheet" href="styles/style_index.css">
 </head>
 <body>
-    <audio id="bg-audio" autoplay loop>
-        <source src="sounds\errie_intro.mp3" type="audio/mpeg">
-    </audio>
-
     <div class="container">
-        <h1>Welcome to the Dark Side</h1>
-        <img src="photos\hitler.png" class="pixel-art" alt="Pixel Art">
-        <div class="dialogue-box">
-            <p id="dialogue-text"></p>
-        </div>
+        <p class="glitch-text">STATE YOUR NAME</p>
+        <input type="text" id="nameInput" placeholder="Enter your name..." />
+        <button class="mystery-btn" onclick="checkName()">SUBMIT</button>
+        <p id="error-message"></p>
+        <p class="hidden-message">The time is running out...</p>
+        <p id="countdown">???</p>
+        <div class="shadow-figure"></div>
+        <audio id="whisper" src="sounds/whisper.mp3"></audio>
     </div>
+    
+    <script>
+        function checkName() {
+            const name = document.getElementById("nameInput").value.trim().toLowerCase();
+            const errorMessage = document.getElementById("error-message");
+            const whisper = document.getElementById("whisper");
 
-    <script src="script.js"></script>
+            if (name === "richa") {
+                window.location.href = "hit.html";
+            } else {
+                errorMessage.textContent = "You are not worthy...";
+                errorMessage.style.opacity = "1";
+                whisper.play(); // Play creepy whispering sound
+
+                setTimeout(() => {
+                    errorMessage.style.opacity = "0";
+                }, 3000);
+            }
+        }
+
+        // Allow pressing "Enter" to submit
+        document.getElementById("nameInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkName();
+            }
+        });
+
+        // Randomly show and hide message
+        setInterval(() => {
+            const message = document.querySelector(".hidden-message");
+            message.style.opacity = (Math.random() > 0.5) ? "1" : "0";
+        }, 3000);
+
+        // Spooky countdown
+        let timeLeft = Math.floor(Math.random() * 60) + 10;
+        function updateCountdown() {
+            document.getElementById("countdown").textContent = `Time Left: ${timeLeft} seconds`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                document.getElementById("countdown").textContent = "Too Late...";
+            } else {
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        updateCountdown();
+    </script>
 </body>
 </html>

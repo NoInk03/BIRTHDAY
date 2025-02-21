@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+    color: pink;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pixel-art {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .dialogue-box {
+    background: rgba(181, 27, 176, 0.8);
+    border: 2px solid rgb(40, 174, 56);
+    padding: 20px;
+    width: 80%;
+    min-height: 80px;
+    text-align: left;
+    color: rgb(238, 241, 18);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

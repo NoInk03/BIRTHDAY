@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+body {
+    background-color: black;
+    color: red;
+    font-family: 'Nosifer', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    animation: flicker 3s infinite alternate;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Glitch Effect */
+.glitch-text {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 2px red; }
+    20% { text-shadow: -2px -2px blue; }
+    40% { text-shadow: 3px -3px green; }
+    60% { text-shadow: -4px 4px yellow; }
+    80% { text-shadow: 5px -5px purple; }
+    100% { text-shadow: 2px 2px red; }
+}
+
+/* Background Flicker */
+@keyframes flicker {
+    0% { background-color: black; }
+    50% { background-color: rgb(10, 10, 10); }
+    100% { background-color: black; }
+}
+
+/* Mystery Button */
+.mystery-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid red;
+    background-color: black;
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 0 0 10px red;
+    animation: pulse 2s infinite alternate;
+}
+
+/* Hover Effect */
+.mystery-btn:hover {
+    background-color: red;
+    color: black;
+    box-shadow: 0 0 20px red;
+    transform: scale(1.2);
+}
+
+/* Pulsing Effect (Heartbeat) */
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px red; }
+    100% { box-shadow: 0 0 30px red; }
+}
+
+/* Flickering Secret Message */
+.hidden-message {
+    font-size: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Countdown Timer */
+#countdown {
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Moving Shadows in Background */
+.shadow-figure {
+    position: absolute;
+    width: 80px;
+    height: 180px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: shadow-flicker 8s infinite, shadow-move 5s infinite alternate;
+}
+
+/* Flicker Effect */
+@keyframes shadow-flicker {
+    0% { opacity: 0; }
+    50% { opacity: 0.1; }
+    60% { opacity: 0.3; }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Slow Movement (Lurking Effect) */
+@keyframes shadow-move {
+    0% { left: 45%; }
+    100% { left: 55%; }
+}
+
+/* Name Input Field */
+input {
+    background: black;
+    border: 2px solid red;
+    color: red;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Nosifer', sans-serif;
+    outline: none;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: white;
+    box-shadow: 0 0 10px red;
+}
+
+/* Error Message */
+#error-message {
+    color: red;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
