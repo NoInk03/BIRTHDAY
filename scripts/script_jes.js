@@ -1,55 +1,89 @@
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("bg-audio");
     const dialogueText = document.getElementById("dialogue-text");
-    const typingSound = new Audio("type-sound.mp3"); // Sound effect for typing
-    
-    const dialogues = [
+    const typingSound = new Audio("type-sound.mp3"); 
+    const krishna = document.getElementById("krishna");
+    const speechBubble = document.getElementById("speech-bubble");
+
+    // Jesus' dialogues
+    const jesusDialogues = [
         "Oh hello there!",
-        "Its 22nd March,",
+        "It's 22nd March,",
         "The Special Day!",
         "And here I am!!!!!!!", 
         "Sorry for the delay",
         "Was caught up saving the world",
-        "Im here to wish you a very very very",
+        "I'm here to wish you a very very very",
         "Very Very Very Very Very Very",
         "Very Very Very Very Very Very",
         "HAPPY BIRTHDAY",
+        "Ooo look who is here!"
     ];
-  
-    let index = 0;
+
+    let jesusIndex = 0;
     let charIndex = 0;
-  
+
     function typeDialogue() {
-        if (charIndex < dialogues[index].length) {
-            dialogueText.textContent += dialogues[index][charIndex];
-            typingSound.currentTime = 0;  // Restart sound each letter
+        if (charIndex < jesusDialogues[jesusIndex].length) {
+            dialogueText.textContent += jesusDialogues[jesusIndex][charIndex];
+            typingSound.currentTime = 0;
             typingSound.play();
             charIndex++;
-            setTimeout(typeDialogue, 100); // Speed of typing effect
+            setTimeout(typeDialogue, 100);
         } else {
-            setTimeout(nextDialogue, 1500); // Wait and show next dialogue
+            setTimeout(nextDialogue, 1500);
         }
     }
-  
+
     function nextDialogue() {
-        index++;
-        if (index < dialogues.length) {
+        jesusIndex++;
+        if (jesusIndex < jesusDialogues.length) {
             dialogueText.textContent = "";
             charIndex = 0;
             typeDialogue();
+        } else {
+            setTimeout(startKrishnaSequence, 2000); // Krishna enters
         }
     }
-  
-    // Start typing effect after 2 seconds
-    setTimeout(typeDialogue, 2000);
-  
-    // Ensure background audio plays after user interaction (for browser autoplay policies)
-    document.body.addEventListener("click", () => {
-        if (audio.paused) {
-            audio.play();
+
+    // Krishna's dialogues
+    const krishnaDialogues = [
+        "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।",
+        "Whenever righteousness declines, I manifest Myself.",
+        "HAPPY BIRTHDAY, VATS!",
+        "Wishing you all the happiness in the world!",
+        "Stay blessed and keep shining!"
+    ];
+
+    let krishnaIndex = 0;
+
+    function showDialogue() {
+        if (krishnaIndex < krishnaDialogues.length) {
+            speechBubble.textContent = krishnaDialogues[krishnaIndex];
+            updateSpeechBubble();  // Adjust position dynamically
+            krishnaIndex++;
+            setTimeout(showDialogue, 4000); // Increase timing to sync with movement
         }
-    });
-  
+    }
+
+    function updateSpeechBubble() {
+        let krishnaRect = krishna.getBoundingClientRect();
+        speechBubble.style.left = `${krishnaRect.left + 50}px`; 
+        speechBubble.style.top = `${krishnaRect.top - 40}px`;
+        requestAnimationFrame(updateSpeechBubble);
+    }
+
+    function startKrishnaSequence() {
+        dialogueText.textContent = "Ooo look who is here!"; // Jesus' reaction
+        setTimeout(() => {
+            krishna.style.display = "block"; // Show Krishna
+            speechBubble.style.display = "block";
+            krishna.style.opacity = "1"; // Make Krishna visible
+            krishna.style.animation = "moveKrishna 20s linear forwards"; // Start Krishna's movement
+            setTimeout(showDialogue, 2000); // Start Krishna's dialogues after he appears
+        }, 2000); // Delay for dramatic effect
+    }
+    
+    setTimeout(typeDialogue, 2000);
     console.log("Eerie script loaded...");
-  });
-  
+});
