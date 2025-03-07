@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const krishna = document.getElementById("krishna");
     const speechBubble = document.getElementById("speech-bubble");
 
+    // Create Ash image element
+    const ash = document.createElement("img");
+    ash.src = "/photos/ash.png"; // Ensure correct path
+    ash.id = "ash";
+    ash.style.position = "absolute";
+    ash.style.width = "200px"; // Adjust size as needed
+    ash.style.right = "-250px"; // Start off-screen (right)
+    ash.style.bottom = "10%";
+    ash.style.opacity = "0"; // Hide initially
+    document.body.appendChild(ash); // Add Ash to the page
+
     // Jesus' dialogues
     const jesusDialogues = [
         "Oh hello there!",
@@ -49,10 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Krishna's dialogues
     const krishnaDialogues = [
         "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।",
-        "Whenever righteousness declines, I manifest Myself.",
-        "HAPPY BIRTHDAY, VATS!",
-        "Wishing you all the happiness in the world!",
-        "Stay blessed and keep shining!"
+        "कार्यते ह्यवशः कर्म सर्वः प्रकृतिजैर्गुणैः",
+        "ಹುಟ್ಟುಹಬ್ಬದ ಶುಭಾಶಯಗಳು!",
+        "आपका जन्मदिन मंगलमय हो, वत्स!"
     ];
 
     let krishnaIndex = 0;
@@ -60,9 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function showDialogue() {
         if (krishnaIndex < krishnaDialogues.length) {
             speechBubble.textContent = krishnaDialogues[krishnaIndex];
-            updateSpeechBubble();  // Adjust position dynamically
+            updateSpeechBubble();
             krishnaIndex++;
-            setTimeout(showDialogue, 4000); // Increase timing to sync with movement
+            setTimeout(showDialogue, 4000); // Adjust timing
+        } else {
+            // Krishna finished speaking, start fade-out
+            setTimeout(fadeOutKrishna, 2000);
         }
     }
 
@@ -74,16 +87,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function startKrishnaSequence() {
-        dialogueText.textContent = "Ooo look who is here!"; // Jesus' reaction
+        dialogueText.textContent = "Ooo look who is here!";
         setTimeout(() => {
-            krishna.style.display = "block"; // Show Krishna
+            krishna.style.display = "block";
             speechBubble.style.display = "block";
-            krishna.style.opacity = "1"; // Make Krishna visible
-            krishna.style.animation = "moveKrishna 20s linear forwards"; // Start Krishna's movement
-            setTimeout(showDialogue, 2000); // Start Krishna's dialogues after he appears
-        }, 2000); // Delay for dramatic effect
+            krishna.style.opacity = "1";
+            krishna.style.animation = "moveKrishna 20s linear forwards";
+            setTimeout(showDialogue, 2000);
+        }, 2000);
+    }
+
+    function fadeOutKrishna() {
+        krishna.style.transition = "opacity 2s";
+        krishna.style.opacity = "0";
+        setTimeout(() => {
+            krishna.style.display = "none";
+            speechBubble.style.display = "none"; // Hide speech bubble too
+            startAshSequence();
+        }, 2000);
+    }
+
+    function startAshSequence() {
+        const ash = document.getElementById("ash");
+        ash.style.opacity = "1"; // Make Ash visible
+        ash.classList.add("ash-move"); // Apply animation class
+    
+        setTimeout(() => {
+            ash.style.opacity = "0"; // Fade out Ash
+            setTimeout(jesusFinalDialogue, 1000);
+        }, 5000); // Hide Ash after animation completes
     }
     
+
+    function jesusFinalDialogue() {
+        dialogueText.textContent = "Pfff, that was a lot of people. Let me take you on a magical journey!";
+        setTimeout(() => {
+            window.location.href = "tree.html"; // Redirect after final dialogue
+        }, 3000);
+    }
+
     setTimeout(typeDialogue, 2000);
     console.log("Eerie script loaded...");
 });

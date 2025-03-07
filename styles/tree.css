@@ -1,0 +1,18 @@
+body {
+    background-color: white;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.jesus-top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px; /* Adjust size */
+}
