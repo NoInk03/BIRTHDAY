@@ -43,6 +43,12 @@
         </div>
         
     </div>
+    <div id="tree"></div>
+    <div id="dogo-container" style="display: none; position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <img id="dogo-image" src="photos/dogo.png" alt="Dogo says let's go!" width="200">
+        <div id="dogo-text" style="background: lightblue; padding: 10px; font-size: 18px; font-weight: bold;">Let's go to the next page!</div>
+    </div>
+    
 
     <script>
     (function() {
@@ -171,10 +177,25 @@
             $await(growAnimate());
             $await(flowAnimate());
             $await(moveAnimate());
+            showDogoAndStopDialogue();
         }));
 
         runAsync().start();
     })();
+    function showDogoAndStopDialogue() {
+    setTimeout(function () {
+        document.getElementById("dogo-container").style.display = "block"; // Show dogo
+        document.getElementById("character-dialogue").innerHTML = ""; // Clear Jesus' dialogue
+        setTimeout(goToNextPage, 10000);
+
+        // Now, after the dogo appears, wait 2 more seconds before going to the next page
+    }, 5000); // 5-second delay before showing dogo
+}
+
+function goToNextPage() {
+    window.location.href = "nextpage.html"; // Update with your actual next page URL
+}
+
     </script>
 </body>
 </html>

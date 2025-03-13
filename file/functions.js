@@ -1,4 +1,10 @@
 
+// Declare treeElement globally
+let treeElement = null;
+let treeAppeared = false; // Track if tree appeared
+let dialogueBox = null; // Ensure dialogueBox is available
+let dogoImage = null; // Store dogoImage reference
+let intervalId = null; // Store dialogue interval
 
 // variables
 var $win = $(window);
@@ -77,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dialogues = [
         "Here We are in a magical place, as you can see in the background.",
-        "All you have to click on that red heart",
+        "All you have to click on that pink heart",
         "Now as you know the person who made this, doesn't know any design",
         "He copy-pasted this from GitHub",
         "And of course didn't know how to change it from heart to something else",
@@ -98,20 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateDialogue(); // Show first dialogue immediately
     const intervalId = setInterval(updateDialogue, 5000); // Continue dialogue every 5 seconds
-
-    function checkTreeAppearance() {
-		
-		if (treeElement) {
-			const treeStyle = window.getComputedStyle(treeElement);
-			if (treeStyle.display !== "none" && !treeAppeared) {
-				// Stop the dialogue loop
-				clearInterval(intervalId);
-				treeAppeared = true;
-				dialogueBox.textContent = "Ooo you pressed";
-				dogoImage.style.display = "block"; // Show the dog image
-			}
-		}
-	}
 	
 	if (treeElement) {
 		const treeObserver = new MutationObserver(checkTreeAppearance);
@@ -124,3 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
 	
     console.log("Character dialogue system initialized...");
 });
+function checkTreeAppearance() {
+    if (treeElement) {
+        const treeStyle = window.getComputedStyle(treeElement);
+        if (treeStyle.display !== "none" && !treeAppeared) {
+            console.log("Tree detected! Redirecting...");
+            clearInterval(intervalId);
+            treeAppeared = true;
+            dialogueBox.textContent = "Ooo you pressed";
+            dogoImage.style.display = "block"; // Show the dog image
+
+            // Redirect to next.html after a delay
+            setTimeout(() => {
+                window.location.href = "next.html";
+            }, 2000);
+        }
+    }
+}
