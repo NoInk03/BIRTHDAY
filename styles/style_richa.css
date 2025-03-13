@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: url("/photos/back_photo.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Ensure text is visible on the background */
+}
+
+#jesus-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 150px;
+    text-align: center;
+}
+
+#jesus-image {
+    width: 100%;
+}
+
+#dialogue-box {
+    background: rgba(0, 0, 0, 0.6); /* Dark background for readability */
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    width: 200px; /* Adjust width as needed */
+    text-align: center; /* Keep text centered */
+}
+#photo-container {
+    margin-top: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust height as needed */
+}
+
+#photo-frame {
+    top: 60%;
+    width: 400px; /* Fixed frame width */
+    height: 500px; /* Fixed frame height */
+    border: 10px solid white; /* Frame border */
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Dark background behind photo */
+    
+    /* Move it down */
+    position: absolute;
+    top: 55%; /* Adjust as needed */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+#photo {
+    top: 100%;
+    max-width: 100%; /* Ensure it fits within frame */
+    max-height: 100%; /* Ensure it doesn't exceed frame height */
+    border-radius: 10px;
+}
