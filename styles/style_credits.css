@@ -37,7 +37,7 @@ body {
 /* 🎤 Dialogue Boxes */
 .dialogue-box {
     position: absolute;
-    width: 250px;
+    width: 300px;
     background: white;
     color: black;
     padding: 10px;
@@ -58,17 +58,58 @@ body {
     right: 8%;
 }
 
-/* 🎬 Credit Roll */
 #credits-container {
     position: absolute;
-    bottom: -100vh;
+    bottom: -100%;
     width: 100%;
     text-align: center;
-    font-size: 1.2em;
-    opacity: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    line-height: 2rem;
+    opacity: 0; /* Start hidden */
+    /* 🎥 Better spacing for readability */
+    font-size: 1.3rem;
+    line-height: 2rem; /* 🔥 Spaced-out lines */
+    padding-bottom: 60px; /* More spacing */
+
+
 }
 
-@keyframes rollCredits {
-    from { bottom: -100vh; opacity: 1; }
-    to { bottom: 100vh; opacity: 1; }
+@keyframes scrollCredits {
+    from {
+        bottom: -100%;
+    }
+    to {
+        bottom: 100%;
+    }
 }
+
+/* ✅ Add fade-in effect */
+#credits-container p, #credits-container h2, #credits-container h3 {
+    opacity: 0;
+    animation: fadeIn 3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* 🎬 Slow down credit roll */
+@keyframes rollCredits {
+    from {
+        bottom: -200%;
+    }
+    to {
+        bottom: 100%;
+    }
+}
+
+/* 🎭 Fade effect for smoother transition */
+.dialogue-box {
+    transition: opacity 0.5s ease-in-out;
+}
+

@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Jesus' dialogues
     const jesusDialogues = [
+        "Pffff Go Away Hitler",
+        "Always causing trouble",
         "Oh hello there!",
         "It's 22nd March,",
         "The Special Day!",
@@ -109,16 +111,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startAshSequence() {
         const ash = document.getElementById("ash");
+        const ashSpeech = document.getElementById("ash-speech"); // Get speech bubble
+    
         ash.style.opacity = "1"; // Make Ash visible
-        ash.classList.add("ash-move"); // Apply animation class
+        ash.classList.add("ash-move"); // Move Ash into view
+    
+        // Show the speech bubble with Ash's dialogue
+        setTimeout(() => {
+            ashSpeech.style.opacity = "1"; // Make speech visible
+        }, 1000); // Show after Ash appears
     
         setTimeout(() => {
-            ash.style.opacity = "0"; // Fade out Ash
-            setTimeout(jesusFinalDialogue, 1000);
-        }, 5000); // Hide Ash after animation completes
+            // Hide speech bubble after some time
+            ashSpeech.style.opacity = "0";
+            
+            setTimeout(() => {
+                ash.style.opacity = "0"; // Fade out Ash
+                setTimeout(jesusFinalDialogue, 1000);
+            }, 1000);
+        }, 4000); // Speech bubble stays visible for 4 seconds
     }
     
-
     function jesusFinalDialogue() {
         dialogueText.textContent = "Pfff, that was a lot of people. Let me take you on a magical journey!";
         setTimeout(() => {

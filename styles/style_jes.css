@@ -78,7 +78,30 @@ body {
   100% { right: 110vw; opacity: 1; } /* Ash moves across screen */
 }
 
-/* Apply animation when Ash is triggered */
+#ash {
+  position: absolute;
+  width: 200px;
+  right: -250px; /* Starts off-screen */
+  bottom: 10%;
+  opacity: 0; /* Initially hidden */
+  transition: right 2s ease-in-out, opacity 1s;
+}
+
 .ash-move {
-  animation: moveAsh 5s linear forwards;
+  right: 20px !important; /* Move into view */
+  opacity: 1 !important;
+}
+
+#ash-speech {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  font-weight: bold;
+  right: 30px;
+  bottom: 180px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease-in-out;
 }

@@ -17,8 +17,8 @@ let currentQuestionIndex = 0;
 const questions = [
     {
         question: "What is the capital of the country that started World War 2?",
-        options: ["London", "Berlin", "Paris", "Rome"],
-        correct: 1,
+        options: ["London","Paris", "Rome","Berlin"],
+        correct: 3,
         background: "photos/berlin.jpg",
         conquestMessage: "Correct! Now my tanks have secured Berlin, the heart of my empire!"
     },
@@ -32,8 +32,8 @@ const questions = [
 
     {
         question: "Which city did Germany bomb relentlessly during the Blitz?",
-        options: ["Edinburgh", "London", "Liverpool", "Manchester"],
-        correct: 1,
+        options: ["London","Edinburgh",  "Liverpool", "Manchester"],
+        correct: 0,
         background: "photos/london.jpg",
         conquestMessage: "Correct! London is under relentless bombardment. Soon, Britain will kneel!"
     },
@@ -46,16 +46,16 @@ const questions = [
     },
     {
         question: "Which city was the first to be liberated by the Allies in 1944?",
-        options: ["Rome", "Berlin", "Paris", "Warsaw"],
-        correct: 2,
+        options: ["Rome", "Berlin", "Warsaw", "Paris"],
+        correct: 3,
         background: "photos/paris.jpg",
         conquestMessage: "Correct! Paris belongs to the Reich! The Eiffel Tower is ours!"
     },
     {
         question: "Which is the cosiest place in all world?",
-        options: ["Room 108 aka Dev's ROOM", "Room 604- SDS Lab", "Room ___- RICHA's room", "Washroom😏"],
+        options: ["Room 108 aka Dev's ROOM", "Room 604- SDS Lab", "Room 209- RICHA's room", "Washroom😏"],
         correct: 2,
-        background: "photos/richa_room.jpg",
+        background: "photos/photo.jpeg",
         conquestMessage: "Hmmmm, well look for prakruthi!!"
     }
 ];
@@ -66,15 +66,20 @@ document.addEventListener("DOMContentLoaded", function () {
     eerieAudio.play().catch(err => console.log("🔇 Autoplay blocked. Waiting for user interaction...", err));
 });
 
-// Function to start the quiz after Hitler's speech
 function startQuiz() {
-    dialogueBox.innerHTML = "Let's see if you are worthy of saving Jesus!";
+    dialogueBox.innerHTML = "Now you help me in world domination!";
     
     setTimeout(() => {
+        dialogueBox.innerHTML = "Answer the questions!";
+    }, 2000); // Delay second message by 2s
+    setTimeout(() => {
+        dialogueBox.innerHTML = "If you answer incorrectly jesus gets whipped!";
+    }, 2000); // Delay second message by 2s
+    setTimeout(() => {
         dialogueBox.style.display = "none";
-        quizContainer.style.display = "block"; // ✅ Make the quiz container visible
+        quizContainer.style.display = "block"; // ✅ Show the quiz container
         showQuestion();
-    }, 3000);
+    }, 4000); // Start quiz after 4s
 }
 
 // Function to display a question
